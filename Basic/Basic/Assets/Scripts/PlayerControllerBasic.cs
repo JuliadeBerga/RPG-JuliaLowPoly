@@ -29,6 +29,9 @@ public class PlayerControllerBasic : MonoBehaviour
 
     public float JumpSpeed = 7.0f;
 
+    //Variable per connectar amb l'script Inventory
+    public Inventory Inventory;
+
     #endregion
 
     // Use this for initialization
@@ -120,5 +123,15 @@ public class PlayerControllerBasic : MonoBehaviour
         }
     }
 
-    
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        IInventoryItem item = hit.collider.GetComponent<IInventoryItem>();
+
+        if (item != null)
+        {
+            Inventory.AddItem(item);
+        }
+
+    }
+
 }
